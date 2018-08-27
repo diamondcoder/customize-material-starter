@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<script type="text/javascript">
+	var resultelement;
+
+	function setDefaultText(){
+		var i;
+		for(i=0; i<resultelement.length; i++){
+			var element=resultelement[i];
+			element.innerText=element.getAttribute('function')+"(x)=";
+		}
+	}
+
+	function getUserInput(){
+		var rawValue = document.getElementById('userInput').value.trim();
+	
+	if (rawValue.length == 0) {
+		throw "You must enter a number."
+	}
+	
+	var num = Number(rawValue);
+	if (isNaN(num)) {
+		throw rawValue + " is not a number."
+	}
+	
+	return num;
+}iu
+
+	function calculateResults(){
+		setDefaultText();
+		try{
+			var x = getUserInput();
+
+		}
+		catch(e){
+			alert("error"+e);
+			return
+		}
+		var i;
+		for(i=0; i<resultelement.length; i++){
+			var element=resultelement[i];
+			var functionName =element.getAttribute('function');
+			var func=Math[functionName];
+			var result= func(x)
+			element.innerText=element.innerText +" "+result;
+		}
+	}
+
+
+	window.onload=function(){
+		resultelement= document.getElementsByClassName('result');
+		setDefaultText();
+		document.getElementById('btnCalculate').addEventListener('click',calculateResults);
+	};
+
+</script>
+</head>
+	
+<body>
+	
+	<h1>Function calculator</h1>
+	
+	x = <input type="text" id="userInput"></input>
+	<button id="btnCalculate">Calculate</button>
+	
+	<br>
+	<br>
+	
+	<p class="result" function="sin"></p>
+	<p class="result" function="cos"></p>
+	
+
+</body>
+
+</html>

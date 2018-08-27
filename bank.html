@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var bankacount={
+		balance:1000, 
+		name:"anolda", 
+		type:"Saving",
+		withdrawal:function(value){
+			this.balance-=value;
+
+		},
+		deposit:function(value){
+			this.balance +=value;
+		}
+
+}
+
+function BankAccount(owner,type){
+	this.owner=owner;
+	this.type=type;
+	this.balance=0;
+
+	this.withdrawal=function(value){
+			this.balance-=value;
+
+		};
+
+		this.deposit=function(value){
+			this.balance +=value;
+		};
+
+
+}
+</script>
+</body>
+</html>

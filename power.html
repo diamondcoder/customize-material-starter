@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+    <title>AWS SDK for JavaScript - Sample Application</title>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.19.0.min.js"></script>
+</head>
+<body>
+    <input type="file" id="file-chooser" />
+    <button id="upload-button">Upload to S3</button>
+    <div id="results"></div>
+    <script type="text/javascript">    
+        var fileChooser = document.getElementById('file-chooser');
+        var button = document.getElementById('upload-button');
+        var results = document.getElementById('results');
+        button.addEventListener('click', function () {
+            var file = fileChooser.files[0];
+            if (file) {            
+                AWS.config.update({
+                    "accessKeyId": "AKIAI7U2N3DTC2LGAPTQ",
+                    "secretAccessKey": "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",
+                    "region": "us-east-2"
+                });
+                var s3 = new AWS.S3();
+                var params = {
+                    Bucket: 'magicida14d58a5185-f494-4c3b-806b-9d781d146d86',
+                    Key: file.name,
+                    ContentType: file.type,
+                    Body: file,
+                    ACL: 'public-read'
+                };        
+                s3.putObject(params, function (err, res) {
+                    if (err) {
+                        results.innerHTML = ("Error uploading data: ", err);
+                    } else {
+                        results.innerHTML = ("Successfully uploaded data");
+                    }
+                });
+            } else {
+                results.innerHTML = 'Nothing to upload.';
+            }
+        }, false);
+    </script>
+</body>
+</html>
+ 
+ 
+ 

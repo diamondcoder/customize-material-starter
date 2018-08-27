@@ -1,0 +1,25 @@
+ <head>
+     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+
+    var start=new Date().getTime(); // Initializes the timer
+
+    $.ajax({
+        url: 'www.google.com'
+
+        })
+
+    .done(function(data){
+        $("#textResponse").val(data);      
+    })
+
+    var end =new Date().getTime(); 
+    var time=end-start; //calculates the time taken
+    alert('Time taken for downloading the file: ' + time);
+
+   </script>
+    </head>
+    <body>
+        <textarea rows="50" cols="90" id="textResponse"></textarea>
+    </body>
+</html>
